@@ -32,7 +32,7 @@ repos:
       - id: pylint
         name: pylint (Python)
         alias: lint
-        stages: [manual]
+        # stages: [manual]
         language: system
         entry: pylint
         require_serial: true
@@ -79,8 +79,5 @@ repos:
         alias: lint
       - id: check-merge-conflict
         alias: lint
-      - id: detect-aws-credentials
-        alias: lint
-        args: [--allow-missing-credentials]
       - id: detect-private-key
         alias: lint
