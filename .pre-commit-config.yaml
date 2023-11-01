@@ -41,7 +41,7 @@ repos:
       - id: mypy
         name: mypy (Python)
         alias: lint
-        stages: [manual]
+        # stages: [manual]
         language: system
         entry: mypy
         require_serial: true
