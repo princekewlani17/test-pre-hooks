@@ -1,0 +1,86 @@
+---
+minimum_pre_commit_version: 2.15.0
+
+fail_fast: false
+
+repos:
+
+  ### fixers ###
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.3.0
+    hooks:
+
+      - id: pretty-format-json
+        alias: lint-fix
+        stages: [manual]
+        args: [--autofix, --indent=2, --no-ensure-ascii, --no-sort-keys]
+
+  ### linters: python ###
+
+  - repo: local
+    hooks:
+
+      - id: isort
+        name: isort (Python)
+        alias: lint
+        language: system
+        entry: isort --filter-files --check-only
+        require_serial: true
+        types_or: [python, pyi]
+
+      - id: pylint
+        name: pylint (Python)
+        alias: lint
+        stages: [manual]
+        language: system
+        entry: pylint
+        require_serial: true
+        types_or: [python]
+
+      - id: mypy
+        name: mypy (Python)
+        alias: lint
+        stages: [manual]
+        language: system
+        entry: mypy
+        require_serial: true
+        types_or: [python]
+
+  ### linters: files ###
+
+  - repo: local
+    hooks:
+
+      - id: yamllint
+        name: yamllint (Files)
+        alias: lint
+        language: system
+        entry: yamllint
+        types_or: [yaml]
+
+      - id: shellcheck
+        name: shellcheck (Files)
+        alias: lint
+        language: system
+        entry: shellcheck --exclude=SC1091
+        types_or: [shell]
+
+
+  ### linters: misc ###
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.3.0
+    hooks:
+
+      - id: check-added-large-files
+        alias: lint
+      - id: check-case-conflict
+        alias: lint
+      - id: check-merge-conflict
+        alias: lint
+      - id: detect-aws-credentials
+        alias: lint
+        args: [--allow-missing-credentials]
+      - id: detect-private-key
+        alias: lint
