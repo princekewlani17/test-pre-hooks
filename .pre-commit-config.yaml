@@ -81,3 +81,14 @@ repos:
         alias: lint
       - id: detect-private-key
         alias: lint
+
+  ### test coverage ###
+
+  - repo: local
+    hooks:
+
+      - id: pytest
+        name: pytest with coverage
+        entry: pytest   # --cov=your_package tests/
+        language: system
+        pass_filenames: false
