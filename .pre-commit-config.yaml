@@ -59,14 +59,6 @@ repos:
         entry: yamllint
         types_or: [yaml]
 
-      - id: shellcheck
-        name: shellcheck (Files)
-        alias: lint
-        language: system
-        entry: shellcheck --exclude=SC1091
-        types_or: [shell]
-
-
   ### linters: misc ###
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
